@@ -1,0 +1,10 @@
+*.log
+*.db
+*.idea
+*.test
+_test*
+vendor
+tmp
+composer.phar
+composer.lock
+localhost.cmd

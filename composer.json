@@ -1,0 +1,29 @@
+{
+	"name": "lite-cms/liteframework",
+	"description": "LiteFramework is a fast and simple framework for PHP.",
+	"homepage": "https://litecms.ir/",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Ali Bakhtiar",
+			"email": "ali@persianicon.com",
+			"homepage": "https://www.persianicon.com/@ali",
+			"role": "Original Developer"
+		}
+	],
+	"autoload": {
+		"files": [
+			"liteframework/LiteFramework.php",
+			"liteframework/Version.php"
+		],
+		"psr-4": {
+			"LiteFramework\\": "liteframework"
+		}
+	},
+	"require": {
+		"php": ">=7.3",
+		"ext-ctype": "*",
+		"ext-mbstring": "*",
+		"ext-json": "*"
+	}
+}
