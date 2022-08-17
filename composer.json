@@ -14,7 +14,8 @@
 	"autoload": {
 		"files": [
 			"liteframework/LiteFramework.php",
-			"liteframework/Version.php"
+			"liteframework/Version.php",
+			"liteframework/Common.php"
 		],
 		"psr-4": {
 			"LiteFramework\\": "liteframework"
