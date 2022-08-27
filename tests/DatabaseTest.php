@@ -110,6 +110,7 @@ final class DatabaseTest extends TestCase
 		$result = $db->select('test2', '*', ['id' => 1]);
 		$this->assertIsArray($result);
 		$this->assertEquals(0, count($result));
+		$this->assertIsArray($db->errorInfo());
 
 		$result = $db->select('test', ['id', 'char', 'int'], ['id[>]' => 1]);
 		$this->assertIsArray($result);

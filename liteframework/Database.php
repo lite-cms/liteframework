@@ -9,7 +9,7 @@
 /**
  * Database
  *
- * @modified : 26 Aug 2022
+ * @modified : 27 Aug 2022
  * @created  : 06 Dec 2019
  * @author   : Ali Bakhtiar
 */
@@ -168,6 +168,6 @@ class Database implements DatabaseInterface
 	*/
 	public function errorInfo()
 	{
-		return $this->db === null ? null : $this->db->error();
+		return $this->db === null ? null : $this->db->errorInfo;
 	}
 }
