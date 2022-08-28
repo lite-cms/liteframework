@@ -18,7 +18,7 @@
  *
  * Based on Flight Framework Router
  *
- * @modified : 16 Aug 2022
+ * @modified : 28 Aug 2022
  * @created  : 24 Feb 2020
  * @author   : Ali Bakhtiar
 */
@@ -153,7 +153,15 @@ class Router implements RouterInterface
 					return false;
 				}
 
-				$url = str_replace($matches[0], $params[$i], $url);
+				$search = $matches[0];
+				if (is_array($search) === false && is_string($search) === false)
+					$search = strval($search);
+
+				$replace = $params[$i];
+				if (is_array($replace) === false && is_string($replace) === false)
+					$replace = strval($replace);
+
+				$url = str_replace($search, $replace, $url);
 				if ($hasStar === true)
 					unset($params[$i]);
 				$i += 1;
