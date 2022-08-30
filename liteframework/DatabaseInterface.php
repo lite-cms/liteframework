@@ -78,9 +78,16 @@ interface DatabaseInterface
 	/**
 	 * Get error
 	 *
-	 * @return mixed
+	 * @return string on error/null on success
 	*/
-	public function errorInfo();
+	public function error();
+
+	/**
+	 * Get errors info
+	 *
+	 * @return array
+	*/
+	public function errorInfo() : array;
 
 /*
 	// Medoo API //
