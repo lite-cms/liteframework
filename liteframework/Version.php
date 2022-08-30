@@ -17,7 +17,7 @@ defined('LITEF_PATH') OR exit('Restricted access');
 
 define('LITEF_VERSION_MAJOR', 0);
 define('LITEF_VERSION_MINOR', 3);
-define('LITEF_VERSION_PATH' , 1);
+define('LITEF_VERSION_PATH' , 2);
 
 define('LITEF_RELEASE_DATE', '2022-08-30'); // Y-m-d
 
