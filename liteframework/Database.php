@@ -9,7 +9,7 @@
 /**
  * Database
  *
- * @modified : 27 Aug 2022
+ * @modified : 30 Aug 2022
  * @created  : 06 Dec 2019
  * @author   : Ali Bakhtiar
 */
@@ -28,8 +28,8 @@ class Database implements DatabaseInterface
 	// @array
 	protected $config = [];
 
-	// @mixed
-	protected $error = null;
+	// @string|null
+	protected $error_ = null;
 
 	/**
 	 * Initializes the database settings
@@ -40,7 +40,7 @@ class Database implements DatabaseInterface
 	public function setConfig(array $config) : bool
 	{
 		if (isset($config['drive'], $config['database']) === false) {
-			$this->error = 'invalid_config';
+			$this->error_ = 'invalid_config';
 			return false;
 		}
 
@@ -124,7 +124,7 @@ class Database implements DatabaseInterface
 			]);
 		}
 		else {
-			$this->error = 'invalid_database_drive['.$this->config['drive'].']';
+			$this->error_ = 'invalid_database_drive['.$this->config['drive'].']';
 			return false;
 		}
 
@@ -162,12 +162,29 @@ class Database implements DatabaseInterface
 	}
 
 	/**
-	 * Get errors
+	 * Get error
 	 *
-	 * @return mixed
+	 * @return string on error/null on success
 	*/
-	public function errorInfo()
+	public function error()
 	{
-		return $this->db === null ? null : $this->db->errorInfo;
+		if ($this->error_ !== null || $this->db === null)
+			return $this->error_;
+		return $this->db->error;
+	}
+
+	/**
+	 * Get errors info
+	 *
+	 * @return array
+	*/
+	public function errorInfo() : array
+	{
+		if ($this->db === null)
+			return [];
+		$err = $this->db->errorInfo;
+		if (is_array($err) === false)
+			$err = [];
+		return $err;
 	}
 }

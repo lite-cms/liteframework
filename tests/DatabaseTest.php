@@ -11,7 +11,7 @@
  *
  * ./vendor/bin/phpunit tests/DatabaseTest.php
  *
- * @modified : 27 Aug 2022
+ * @modified : 30 Aug 2022
  * @created  : 26 Aug 2022
 */
 
@@ -91,6 +91,9 @@ final class DatabaseTest extends TestCase
 		$this->assertEquals(1, $db->id());
 
 		$result = $db->select('test', '*', ['id' => 1]);
+		$this->assertNull($db->error());
+		$this->assertIsArray($db->errorInfo());
+		$this->assertEquals(0, count($db->errorInfo()));
 		$this->assertIsArray($result);
 		$this->assertEquals(1, count($result));
 		$this->assertEquals('hello', $result[0]['char']);
@@ -104,15 +107,22 @@ final class DatabaseTest extends TestCase
 		];
 
 		$result = $db->insert('test', $data);
+		$this->assertNull($db->error());
 		$this->assertIsObject($result);
 		$this->assertEquals(2, $db->id());
 
 		$result = $db->select('test2', '*', ['id' => 1]);
+		$errorInfo = $db->errorInfo();
+		$this->assertIsString($db->error());
+		$this->assertIsArray($errorInfo);
+		$this->assertGreaterThan(0, $errorInfo);
 		$this->assertIsArray($result);
 		$this->assertEquals(0, count($result));
 		$this->assertIsArray($db->errorInfo());
 
 		$result = $db->select('test', ['id', 'char', 'int'], ['id[>]' => 1]);
+		$this->assertNull($db->error());
+		$this->assertEquals(0, count($db->errorInfo()));
 		$this->assertIsArray($result);
 		$this->assertEquals(1, count($result));
 		$this->assertEquals(2, $result[0]['id']);
