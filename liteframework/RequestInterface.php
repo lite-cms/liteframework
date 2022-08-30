@@ -9,7 +9,7 @@
 /**
  * Request Interface
  *
- * @modified : 18 Aug 2022
+ * @modified : 30 Aug 2022
  * @created  : 11 Oct 2019
  * @author   : Ali Bakhtiar
 */
@@ -79,18 +79,11 @@ interface RequestInterface
 	public function method() : string;
 
 	/**
-	 * Get the request url path
+	 * Get request url
 	 *
 	 * @return string
 	*/
 	public function url() : string;
-
-	/**
-	 * Get query string
-	 *
-	 * @param string
-	*/
-	public function queryString() : string;
 
 	/**
 	 * Get the request host name

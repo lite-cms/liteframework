@@ -11,7 +11,7 @@
  *
  * ./vendor/bin/phpunit tests/RequestTest.php
  *
- * @modified : 18 Aug 2022
+ * @modified : 30 Aug 2022
  * @created  : 17 Aug 2022
 */
 
@@ -69,11 +69,6 @@ final class RequestTest extends TestCase
 		$this->assertEquals(
 			'/',
 			$req->url()
-		);
-
-		$this->assertEquals(
-			'',
-			$req->queryString()
 		);
 
 		$this->assertEquals(
@@ -317,7 +312,7 @@ final class RequestTest extends TestCase
 		$req->init();
 
 		$this->assertEquals(
-			'/web/blog/post/123',
+			'/web/blog/post/123?q=keyword&sort=asc',
 			$req->url()
 		);
 
@@ -327,18 +322,8 @@ final class RequestTest extends TestCase
 		);
 
 		$this->assertEquals(
-			true,
-			$req->set('QueryString', 'q=key')
-		);
-
-		$this->assertEquals(
 			'/hello/world',
 			$req->url()
-		);
-
-		$this->assertEquals(
-			'q=key',
-			$req->queryString()
 		);
 
 		return;
@@ -352,7 +337,7 @@ final class RequestTest extends TestCase
 		$req->init();
 
 		$this->assertEquals(
-			'/index/سلام/',
+			'//index/////سلام/',
 			$req->url()
 		);
 
@@ -367,7 +352,7 @@ final class RequestTest extends TestCase
 		$req->init();
 
 		$this->assertEquals(
-			'/index/تست/تست',
+			'/index/تست/تست#x',
 			$req->url()
 		);
 

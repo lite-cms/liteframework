@@ -9,7 +9,7 @@
 /**
  * Request
  *
- * @modified : 18 Aug 2022
+ * @modified : 30 Aug 2022
  * @created  : 11 Oct 2019
  * @author   : Ali Bakhtiar
 */
@@ -68,11 +68,8 @@ class Request implements RequestInterface
 	// @string
 	protected $method = null;
 
-	// Url path @string
-	protected $urlPath = null;
-
-	// Url query string @string
-	protected $queryString = null;
+	// Url @string
+	protected $url = null;
 
 	// Http Accept @array
 	protected $httpAccept = null;
@@ -268,72 +265,20 @@ class Request implements RequestInterface
 	}
 
 	/**
-	 * Get the request url path
+	 * Get url
 	 *
 	 * @return string
 	*/
 	public function url() : string
 	{
-		if ($this->urlPath !== null)
-			return $this->urlPath;
+		if ($this->url !== null)
+			return $this->url;
 
-		$url = urldecode($this->_server['REQUEST_URI']);
-		if (empty($url) === true || $url === '/') {
-			$this->urlPath = '/';
-			return $this->urlPath;
-		}
+		$this->url = urldecode($this->_server['REQUEST_URI']);
+		if (empty($this->url) === true || $this->url === '/')
+			$this->url = '/';
 
-		$surl = '';
-		$lastCharIsSlash = false;
-		for ($i=0; $i<strlen($url); ++$i) {
-			if ($lastCharIsSlash === true) {
-				if ($url[$i] === '/')
-					continue;
-				$lastCharIsSlash = false;
-			}
-			else if ($url[$i] === '/') {
-				$lastCharIsSlash = true;
-			}
-
-			if ($url[$i] === '?' || $url[$i] === '#')
-				break;
-
-			$surl .= $url[$i];
-		}
-
-		$this->urlPath = $surl;
-
-		return $this->urlPath;
-	}
-
-	/**
-	 * Get query string
-	 *
-	 * @param string
-	*/
-	public function queryString() : string
-	{
-		if ($this->queryString !== null)
-			return $this->queryString;
-
-		$qs = '';
-		$isQs = false;
-		$url = $this->_server['REQUEST_URI'];
-		for ($i=0; $i<strlen($url); ++$i) {
-			if ($url[$i] === '?') {
-				$isQs = true;
-				continue;
-			}
-			else if ($url[$i] === '#') {
-				break;
-			}
-
-			if (true === $isQs)
-				$qs .= $url[$i];
-		}
-
-		$this->queryString = str_replace('&amp;', '&', $qs);
-		return $this->queryString;
+		return $this->url;
 	}
 
 	/**
@@ -483,10 +428,7 @@ class Request implements RequestInterface
 			break;
 			case 'urlpath':
 			case 'url':
-				$this->urlPath = (string) $value;
-			break;
-			case 'querystring':
-				$this->queryString = (string) $value;
+				$this->url = (string) $value;
 			break;
 			case 'xmlrequest':
 			case 'ajax':
