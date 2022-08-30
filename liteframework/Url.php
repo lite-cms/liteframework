@@ -280,6 +280,9 @@ class Url implements UrlInterface
 			return;
 
 		$this->urlPath = str_replace($this->baseUrlPath, '', $this->urlPath);
+		if ($this->urlPath === '')
+			$this->urlPath = '/';
+
 		return;
 	}
 

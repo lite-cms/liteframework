@@ -85,6 +85,12 @@ final class UrlTest extends TestCase
 		$this->assertEquals('/app/test/web-site', $url->getBasePath());
 		$this->assertEquals(['blog', 'post', '123'], $url->getPathArray());
 
+		$url->setDocumentRootPath('/home/user/public/');
+		$url->setSelfPath('/home/user/public/site/');
+		$url->set('/site');
+		$this->assertEquals($url->get(), '/');
+		$this->assertEquals($url->getBasePath(), '/site');
+
 		return;
 	}
 
