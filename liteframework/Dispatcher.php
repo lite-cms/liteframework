@@ -9,7 +9,7 @@
 /**
  * Dispatcher
  *
- * @modified : 28 Aug 2022
+ * @modified : 31 Aug 2022
  * @created  : 28 Aug 2022
  * @author   : Ali Bakhtiar
 */
@@ -117,6 +117,12 @@ class Dispatcher implements DispatcherInterface
 				if (count($params) > 0)
 					$params = array_values($params);
 				$rc = $this->execute($eventName, $params);
+				if ($rc === false)
+					break;
+				if (is_bool($this->callbackResult) === true && $this->callbackResult === false) {
+					$rc = false;
+					continue;
+				}
 				break;
 			}
 		}
