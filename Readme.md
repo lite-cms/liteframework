@@ -24,7 +24,7 @@ require('vendor/autoload.php');
 
 use LiteFramework\Framework;
 
-Framework::init($_SERVER['DOCUMENT_ROOT'], __DIR__);
+Framework::init($_SERVER['DOCUMENT_ROOT'], dirname($_SERVER['SCRIPT_FILENAME']));
 
 Framework::route('/', function() {
 	Framework::$response->write('Hello, World!');
@@ -112,7 +112,7 @@ use LiteFramework\Dispatcher;
 use LiteFramework\Router;
 use LiteFramework\Url;
 
-$url = new Url($_SERVER['DOCUMENT_ROOT'], __DIR__);
+$url = new Url($_SERVER['DOCUMENT_ROOT'], dirname($_SERVER['SCRIPT_FILENAME']));
 $url->setUrl('/1');
 
 $router = new Router();
