@@ -9,7 +9,7 @@
 /**
  * URL
  *
- * @modified : 30 Aug 2022
+ * @modified : 03 Sep 2022
  * @created  : 30 Aug 2022
  * @author   : Ali Bakhtiar
 */
@@ -264,6 +264,18 @@ class Url implements UrlInterface
 	public function set(string $url) : UrlInterface
 	{
 		return $this->setUrl($url);
+	}
+
+	/**
+	 * Set url base path - app directory
+	 *
+	 * @param string
+	 * @return void
+	*/
+	public function setBasePath(string $path) : void
+	{
+		$this->baseUrlPath = $path;
+		return;
 	}
 
 	/**

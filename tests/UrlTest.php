@@ -11,7 +11,7 @@
  *
  * ./vendor/bin/phpunit tests/UrlTest.php
  *
- * @modified : 30 Aug 2022
+ * @modified : 03 Sep 2022
  * @created  : 30 Aug 2022
 */
 
@@ -90,6 +90,9 @@ final class UrlTest extends TestCase
 		$url->set('/site');
 		$this->assertEquals($url->get(), '/');
 		$this->assertEquals($url->getBasePath(), '/site');
+
+		$url->setBasePath('/test-path');
+		$this->assertEquals($url->getBasePath(), '/test-path');
 
 		return;
 	}

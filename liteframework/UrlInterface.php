@@ -9,7 +9,7 @@
 /**
  * URL Interface
  *
- * @modified : 30 Aug 2022
+ * @modified : 03 Sep 2022
  * @created  : 30 Aug 2022
  * @author   : Ali Bakhtiar
 */
@@ -121,4 +121,12 @@ interface UrlInterface
 	 * @return string
 	*/
 	public function getBasePath() : string;
+
+	/**
+	 * Set url base path - app directory
+	 *
+	 * @param string
+	 * @return void
+	*/
+	public function setBasePath(string $path) : void;
 }
